@@ -10,8 +10,8 @@ from nose.plugins.base import Plugin
 
 support = os.path.join(os.path.dirname(__file__), 'support')
 
-class TestRandomizePlugin(PluginTester, unittest.TestCase):
 
+class TestRandomizePlugin(PluginTester, unittest.TestCase):
     activate = '--randomize'
     args = ['-v', '--seed=2530711073']
     plugins = [Randomize()]
@@ -27,7 +27,7 @@ class TestRandomizePlugin(PluginTester, unittest.TestCase):
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
-                
+
 
 if __name__ == '__main__':
     unittest.main()
