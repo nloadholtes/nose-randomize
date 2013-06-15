@@ -11,7 +11,7 @@ from setuptools import setup
 
 setup(
     name='Randomize test order plugin',
-    version='0.1',
+    version='0.2',
     author='Nick Loadholtes',
     author_email='nick@ironboundsoftware.com',
     original_author='Charles McCreary',
