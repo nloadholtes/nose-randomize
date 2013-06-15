@@ -4,22 +4,17 @@ This plugin randomizes the order of tests within a unittest.TestCase class
 __test__ = False
 
 import logging
-import os
 from nose.plugins import Plugin
 from nose import loader
 from inspect import isfunction, ismethod
 from nose.case import FunctionTestCase, MethodTestCase
 from nose.failure import Failure
-from nose.config import Config
-from nose.importer import Importer, add_path, remove_path
-from nose.selector import defaultSelector, TestAddress
-from nose.util import cmp_lineno, getpackage, isclass, isgenerator, ispackage, \
-    match_last, resolve_name, transplant_func, transplant_class
-from nose.suite import ContextSuiteFactory, ContextList, LazySuite
+from nose.util import isclass, isgenerator, transplant_func, transplant_class
 import random
 import unittest
 
 log = logging.getLogger(__name__)
+
 
 class Randomize(Plugin):
     """
@@ -37,7 +32,7 @@ class Randomize(Plugin):
         Plugin.options(self, parser, env)
         parser.add_option('--randomize', action='store_true', dest='randomize',
                           help="Randomize the order of the tests within a unittest.TestCase class")
-        parser.add_option('--seed', action='store', dest='seed', default=None, type = long,
+        parser.add_option('--seed', action='store', dest='seed', default=None, type=long,
                           help="Initialize the seed for deterministic behavior in reproducing failed tests")
 
     def configure(self, options, conf):
@@ -53,7 +48,6 @@ class Randomize(Plugin):
             print("Using %d as seed" % (self.seed,))
 
     def makeTest(self, obj, parent=None):
-        
         """Given a test object and its parent, return a test case
         or test suite.
         """
