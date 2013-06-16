@@ -14,8 +14,8 @@ setup(
     version='0.2',
     author='Nick Loadholtes',
     author_email='nick@ironboundsoftware.com',
-    original_author='Charles McCreary',
-    original_author_email = 'charles.mccreary@tiawichiresearch.com',
+    # original_author='Charles McCreary',
+    # original_author_email = 'charles.mccreary@tiawichiresearch.com',
     description = 'Randomize the order of the tests within a unittest.TestCase class',
     license = 'GNU LGPL',
     py_modules = ['randomize'],
@@ -26,4 +26,3 @@ setup(
         }
 
     )
-
