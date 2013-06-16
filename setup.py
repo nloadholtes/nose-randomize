@@ -18,7 +18,7 @@ setup(
     # original_author_email = 'charles.mccreary@tiawichiresearch.com',
     description = 'Randomize the order of the tests within a unittest.TestCase class',
     license = 'GNU LGPL',
-    py_modules = ['randomize'],
+    # py_modules = ['randomize'],
     entry_points = {
         'nose.plugins.0.10': [
             'randomize = randomize:Randomize'
