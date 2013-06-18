@@ -17,7 +17,7 @@ class Tests_A_set(unittest.TestCase):
     def test_A_4(self):
         pass
 
-class Tests_B_set(unittest.TestCase)
+class Tests_B_set(unittest.TestCase):
     def test_B_1(self):
         pass
 
