@@ -1,5 +1,12 @@
 """
 This plugin randomizes the order of tests within a unittest.TestCase class
+
+The original source of the code is:
+
+http://code.google.com/p/python-nose/issues/detail?id=255
+
+and the original author is: Charles McCreary
+
 """
 __test__ = False
 

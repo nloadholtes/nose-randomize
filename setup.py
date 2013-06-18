@@ -1,5 +1,12 @@
 """
 Randomize test order plugin
+
+The original source of the code is:
+
+http://code.google.com/p/python-nose/issues/detail?id=255
+
+and the original author is: Charles McCreary
+
 """
 try:
     import ez_setup
