@@ -53,16 +53,16 @@ class TestRandomizePluginMultipleTestClasses(PluginTester, unittest.TestCase):
 
 class TestRandomizePluginLooseTestFunctions(PluginTester, unittest.TestCase):
     activate = '--randomize'
-    args = ['-v', '--seed=1234112']
+    args = ['-v', '--seed=54642']
     plugins = [Randomize()]
     suitepath = os.path.join(support, 'fixtures_loose.py')
 
     def runTest(self):
         expect = [
-            'test_C (fixtures.Tests) ... ok',
-            'test_B (fixtures.Tests) ... ok',
-            'test_A (fixtures.Tests) ... ok',
-            'test_D (fixtures.Tests) ... ok']
+            'fixtures_loose.test_loose_A ... ok',
+            'fixtures_loose.test_loose_B ... ok',
+            'fixtures_loose.test_loose_C ... ok',
+            'fixtures_loose.test_loose_D ... ok']
         print str(self.output)
         for line in self.output:
             if expect:

@@ -2,14 +2,14 @@
 'loose' test functions
 """
 
-def test_loose_A(self):
+def test_loose_A():
     pass
 
-def test_loose_B(self):
+def test_loose_B():
     pass
 
-def test_loose_C(self):
+def test_loose_C():
     pass
 
-def test_loose_D(self):
+def test_loose_D():
     pass

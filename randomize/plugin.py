@@ -85,7 +85,7 @@ class Randomize(Plugin):
             if isgenerator(obj):
                 return ldr.loadTestsFromGenerator(obj, parent)
             else:
-                return FunctionTestCase(obj)
+                return [FunctionTestCase(obj)]
         else:
             return Failure(TypeError,
                            "Can't make a test from %s" % obj)
