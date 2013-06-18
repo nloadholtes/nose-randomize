@@ -1,5 +1,11 @@
 """
 Tests that plugins can override loadTestsFromTestCase
+
+The original source of the code is:
+
+http://code.google.com/p/python-nose/issues/detail?id=255
+
+and the original author is: Charles McCreary
 """
 import os
 import unittest
