@@ -69,5 +69,19 @@ class TestRandomizePluginLooseTestFunctions(PluginTester, unittest.TestCase):
                 self.assertEqual(line.strip(), expect.pop(0))
 
 
+class TestRandomizePluginNoTestFunctions(PluginTester, unittest.TestCase):
+    activate = '--randomize'
+    args = ['-v', '--seed=521115']
+    plugins = [Randomize()]
+    suitepath = os.path.join(support, 'fixtures_not_tests.py')
+
+    def runTest(self):
+        expect = []
+        print str(self.output)
+        for line in self.output:
+            if expect:
+                self.assertEqual(line.strip(), expect.pop(0))
+
+
 if __name__ == '__main__':
     unittest.main()
