@@ -41,10 +41,10 @@ class TestRandomizePluginMultipleTestClasses(PluginTester, unittest.TestCase):
 
     def runTest(self):
         expect = [
-            'test_C (fixtures.Tests) ... ok',
-            'test_B (fixtures.Tests) ... ok',
-            'test_A (fixtures.Tests) ... ok',
-            'test_D (fixtures.Tests) ... ok']
+            'test_C (fixtures_two_classes.Tests_C_set) ... ok',
+            'test_B (fixtures_two_classes.Tests_B_set) ... ok',
+            'test_A (fixtures_two_classes.Tests_A_set) ... ok',
+            'test_D (fixtures_two_classes.Tests_D_set) ... ok']
         print str(self.output)
         for line in self.output:
             if expect:
