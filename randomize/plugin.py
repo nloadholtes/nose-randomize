@@ -54,10 +54,22 @@ class Randomize(Plugin):
             random.seed(self.seed)
             print("Using %d as seed" % (self.seed,))
 
+    def loadTestsFromNames(self, names, module=None):
+        print("loadTestsFromNames called!")
+        print(names)
+
+    def wantClass(self, cls):
+        print("want class")
+        print(cls)
+
+    # def beforeTest(test):
+    #     print("Before test : %s" % test)
+
     def makeTest(self, obj, parent=None):
         """Given a test object and its parent, return a test case
         or test suite.
         """
+        # import pdb; pdb.set_trace()
         ldr = loader.TestLoader()
         if isinstance(obj, unittest.TestCase):
             return obj
