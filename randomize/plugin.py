@@ -61,6 +61,7 @@ class Randomize(Plugin):
     def wantClass(self, cls):
         print("want class")
         print(cls)
+        #Change this to populate a list that makeTest can then process?
 
     # def beforeTest(test):
     #     print("Before test : %s" % test)
@@ -69,8 +70,11 @@ class Randomize(Plugin):
         """Given a test object and its parent, return a test case
         or test suite.
         """
-        # import pdb; pdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         ldr = loader.TestLoader()
+        if parent is not None:
+            blah = ldr.loadTestsFromModule(parent)
+            return self._shuffler(blah)
         if isinstance(obj, unittest.TestCase):
             return obj
         elif isclass(obj):
@@ -102,9 +106,17 @@ class Randomize(Plugin):
             return Failure(TypeError,
                            "Can't make a test from %s" % obj)
 
+    def Randomized_loadTestsFromContextSuite(self, suite):
+        l = loader.TestLoader()
+        tmp = l.loadTestsFromTestModule(suite)
+        return self._shuffler(tmp)
+
     def Randomized_loadTestsFromTestCase(self, testCaseClass):
         l = loader.TestLoader()
         tmp = l.loadTestsFromTestCase(testCaseClass)
+        return self._shuffler(tmp)
+
+    def _shuffler(self, tmp):
         randomized_tests = []
         for t in tmp._tests:
             randomized_tests.append(t)
