@@ -72,9 +72,9 @@ class Randomize(Plugin):
         """
         # import ipdb; ipdb.set_trace()
         ldr = loader.TestLoader()
-        if parent is not None:
-            blah = ldr.loadTestsFromModule(parent)
-            return self._shuffler(blah)
+        # if parent is not None:
+        #     blah = ldr.loadTestsFromModule(parent)
+        #     return self._shuffler(blah)
         if isinstance(obj, unittest.TestCase):
             return obj
         elif isclass(obj):
