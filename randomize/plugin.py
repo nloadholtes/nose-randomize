@@ -47,6 +47,8 @@ class Randomize(Plugin):
         Configure plugin.
         """
         Plugin.configure(self, options, conf)
+        self.classes_to_look_at = []
+
         if options.randomize:
             self.enabled = True
             if options.seed is not None:
@@ -61,7 +63,12 @@ class Randomize(Plugin):
     def wantClass(self, cls):
         print("want class")
         print(cls)
+        self.classes_to_look_at.append(cls)
         #Change this to populate a list that makeTest can then process?
+
+    def loadTestsFromModule(self, module):
+        print("loadTestsFromModule called")
+        # import ipdb; ipdb.set_trace()
 
     # def beforeTest(test):
     #     print("Before test : %s" % test)
@@ -71,10 +78,16 @@ class Randomize(Plugin):
         or test suite.
         """
         # import ipdb; ipdb.set_trace()
+        print("makeTest called")
         ldr = loader.TestLoader()
         # if parent is not None:
         #     blah = ldr.loadTestsFromModule(parent)
         #     return self._shuffler(blah)
+        # if len(self.classes_to_look_at) > 0:
+        #     output = []
+        #     for cls in self.classes_to_look_at:
+        #         output.extend(self.Randomized_loadTestsFromTestCase(cls))
+        #     print("output len is %s" % len(output))
         if isinstance(obj, unittest.TestCase):
             return obj
         elif isclass(obj):
