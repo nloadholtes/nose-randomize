@@ -90,7 +90,10 @@ class TestRandomizePluginNoTUnitTestBased(PluginTester, unittest.TestCase):
     suitepath = os.path.join(support, 'fixtures_not_unittest.py')
 
     def runTest(self):
-        expect = []
+        expect = ["fixtures_not_unittest.Test_something_not_unittest.test_A_3 ... ok",
+        "fixtures_not_unittest.Test_something_not_unittest.test_A_1 ... ok",
+        "fixtures_not_unittest.Test_something_not_unittest.test_A_4 ... ok",
+        "fixtures_not_unittest.Test_something_not_unittest.test_A_2 ... ok"]
         print str(self.output)
         for line in self.output:
             if expect:

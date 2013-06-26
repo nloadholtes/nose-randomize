@@ -80,9 +80,6 @@ class Randomize(Plugin):
         # import ipdb; ipdb.set_trace()
         print("makeTest called")
         ldr = loader.TestLoader()
-        # if parent is not None:
-        #     blah = ldr.loadTestsFromModule(parent)
-        #     return self._shuffler(blah)
         # if len(self.classes_to_look_at) > 0:
         #     output = []
         #     for cls in self.classes_to_look_at:
@@ -97,7 +94,7 @@ class Randomize(Plugin):
                 # Randomize the order of the tests in the TestCase
                 return self.Randomized_loadTestsFromTestCase(obj)
             else:
-                return ldr.loadTestsFromTestClass(obj)
+                return self.Randomized_loadTestsFromTestClass(obj)
         elif ismethod(obj):
             if parent is None:
                 parent = obj.__class__
@@ -118,6 +115,11 @@ class Randomize(Plugin):
         else:
             return Failure(TypeError,
                            "Can't make a test from %s" % obj)
+
+    def Randomized_loadTestsFromTestClass(self, suite):
+        l = loader.TestLoader()
+        tmp = l.loadTestsFromTestClass(suite)
+        return self._shuffler(tmp)
 
     def Randomized_loadTestsFromContextSuite(self, suite):
         l = loader.TestLoader()
