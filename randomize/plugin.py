@@ -116,25 +116,22 @@ class Randomize(Plugin):
             return Failure(TypeError,
                            "Can't make a test from %s" % obj)
 
-    def Randomized_loadTestsFromTestClass(self, suite):
-        l = loader.TestLoader()
-        tmp = l.loadTestsFromTestClass(suite)
-        return self._shuffler(tmp)
+    def Randomized_loadTestsFromTestClass(self, cls):
+        tests = loader.TestLoader().loadTestsFromTestClass(cls)
+        return self._shuffler(tests)
 
     def Randomized_loadTestsFromContextSuite(self, suite):
-        l = loader.TestLoader()
-        tmp = l.loadTestsFromTestModule(suite)
-        return self._shuffler(tmp)
+        tests = loader.TestLoader().loadTestsFromTestModule(suite)
+        return self._shuffler(tests)
 
     def Randomized_loadTestsFromTestCase(self, testCaseClass):
-        l = loader.TestLoader()
-        tmp = l.loadTestsFromTestCase(testCaseClass)
-        return self._shuffler(tmp)
+        tests = loader.TestLoader().loadTestsFromTestCase(testCaseClass)
+        return self._shuffler(tests)
 
-    def _shuffler(self, tmp):
+    def _shuffler(self, tests):
         randomized_tests = []
-        for t in tmp._tests:
+        for t in tests._tests:
             randomized_tests.append(t)
         random.shuffle(randomized_tests)
-        tmp._tests = (t for t in randomized_tests)
-        return tmp
+        tests._tests = (t for t in randomized_tests)
+        return tests
