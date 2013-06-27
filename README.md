@@ -8,6 +8,7 @@ This work is based on the code created by Charles McCreary as posted to https://
 This project is attempting the following:
  * ~~"proper" plugin structure~~
  * The ability to randomize across all tests, not just within the TestCase class
+ * High (as close to 100% as possible) test coverage. Currently over 78%.
 
 
 The original source of the code is:
