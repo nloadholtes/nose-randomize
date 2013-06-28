@@ -11,6 +11,10 @@ This project is attempting the following:
  * High (as close to 100% as possible) test coverage. Currently over 78%.
 
 
+To do list:
+ - [ ] Fix setup.py
+ - [ ] ???
+
 The original source of the code is:
 
 http://code.google.com/p/python-nose/issues/detail?id=255
