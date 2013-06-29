@@ -18,18 +18,18 @@ from setuptools import setup
 
 setup(
     name='randomize',
-    version='0.2',
+    version='0.9',
     author='Nick Loadholtes',
     author_email='nick@ironboundsoftware.com',
+    url='https://github.com/nloadholtes/nose-randomize',
     # original_author='Charles McCreary',
     # original_author_email = 'charles.mccreary@tiawichiresearch.com',
-    description = 'Randomize the order of the tests within a unittest.TestCase class',
-    license = 'GNU LGPL',
-    py_modules = ['randomize/plugin', 'randomize/__init__'],
-    entry_points = {
+    description='Randomize the order of the tests within a unittest.TestCase class',
+    license='GNU LGPL',
+    py_modules=['randomize/plugin', 'randomize/__init__'],
+    entry_points={
         'nose.plugins.0.10': [
             'randomize = randomize:Randomize'
             ]
         }
-
     )
