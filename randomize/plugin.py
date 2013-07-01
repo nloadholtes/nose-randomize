@@ -57,28 +57,22 @@ class Randomize(Plugin):
             print("Using %d as seed" % (self.seed,))
 
     def loadTestsFromNames(self, names, module=None):
-        print("loadTestsFromNames called!")
-        print(names)
+        pass
 
     def wantClass(self, cls):
-        print("want class")
-        print(cls)
+        # print("want class")
+        # print(cls)
         self.classes_to_look_at.append(cls)
         #Change this to populate a list that makeTest can then process?
 
-    def loadTestsFromModule(self, module):
-        print("loadTestsFromModule called")
-        # import ipdb; ipdb.set_trace()
-
-    # def beforeTest(test):
-    #     print("Before test : %s" % test)
+    # def loadTestsFromModule(self, module):
+    #     print("loadTestsFromModule called")
 
     def makeTest(self, obj, parent=None):
         """Given a test object and its parent, return a test case
         or test suite.
         """
         # import ipdb; ipdb.set_trace()
-        print("makeTest called")
         ldr = loader.TestLoader()
         # if len(self.classes_to_look_at) > 0:
         #     output = []
