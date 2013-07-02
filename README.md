@@ -20,15 +20,13 @@ To install from source:
 python setup.py install
 ```
 
-_(Coming soon)_ To install from pip:
+To install from pip:
 
 ```shell
 pip install randomize
 ```
 
 ## Usage
-
-_(More coming soon)_
 
 ### Basic usage
 The following will execute the tests and print out the seed that was used to start the random number generator. This is useful for tracking down test failures: if there is a depedency that causes a failure, re-running the test suite with the same seed should allow the failure to be repeatable.
