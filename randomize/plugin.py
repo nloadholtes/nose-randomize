@@ -29,8 +29,6 @@ class Randomize(Plugin):
     """
     name = 'randomize'
     # Generate a seed for deterministic behaviour
-    # Could use getstate  and setstate, but that would involve
-    # pickling the state and storing it somewhere. too lazy.
     seed = random.getrandbits(32)
 
     def options(self, parser, env):
@@ -60,25 +58,14 @@ class Randomize(Plugin):
         pass
 
     def wantClass(self, cls):
-        # print("want class")
-        # print(cls)
         self.classes_to_look_at.append(cls)
         #Change this to populate a list that makeTest can then process?
-
-    # def loadTestsFromModule(self, module):
-    #     print("loadTestsFromModule called")
 
     def makeTest(self, obj, parent=None):
         """Given a test object and its parent, return a test case
         or test suite.
         """
-        # import ipdb; ipdb.set_trace()
         ldr = loader.TestLoader()
-        # if len(self.classes_to_look_at) > 0:
-        #     output = []
-        #     for cls in self.classes_to_look_at:
-        #         output.extend(self.Randomized_loadTestsFromTestCase(cls))
-        #     print("output len is %s" % len(output))
         if isinstance(obj, unittest.TestCase):
             return obj
         elif isclass(obj):
@@ -123,6 +110,7 @@ class Randomize(Plugin):
         return self._shuffler(tests)
 
     def _shuffler(self, tests):
+        """Shuffles the given tests"""
         randomized_tests = []
         for t in tests._tests:
             randomized_tests.append(t)

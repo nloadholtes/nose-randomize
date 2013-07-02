@@ -33,6 +33,7 @@ class TestRandomizePlugin(PluginTester, unittest.TestCase):
                 self.assertEqual(line.strip(), expect.pop(0))
 
 
+@unittest.skip("Skipping test until the classes can be shuffled")
 class TestRandomizePluginMultipleTestClasses(PluginTester, unittest.TestCase):
     activate = '--randomize'
     args = ['-v', '--seed=1234112']
