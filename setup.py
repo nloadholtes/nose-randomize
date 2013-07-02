@@ -31,6 +31,14 @@ setup(
     entry_points={
         'nose.plugins.0.10': [
             'randomize = randomize:Randomize'
-            ]
-        }
+            ],
+        },
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Classifier: Intended Audience :: Developers',
+        'Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
+        'Classifier: Operating System :: OS Independent',
+        'Classifier: Topic :: Software Development :: Testing',
+        'Classifier: Topic :: Utilities']
+
     )
