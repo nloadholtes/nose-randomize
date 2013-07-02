@@ -8,7 +8,7 @@ When nose runs the tests in a given project, the order that the tests are loaded
 
 For unit tests, an ideal situation is one of isolation: Each test should be able to run independently of the other tests in the project. If there is a dependency (such as test_A must run first in order for test_B to pass) then the test authors might want to look into how their tests are setup.
 
-This plugin allows for randomization of the tests in a test class when they are run. In theory this should prove ( _or disprove_ ) the isolation of the tests because they can be run in a random order every time and this should expose any pre-condition dependencies that might exist.
+This plugin allows for randomization of the tests in a test class when they are run. In theory this should prove _(or disprove)_ the isolation of the tests because they can be run in a random order every time and this should expose any pre-condition dependencies that might exist.
 
 ## Installation
 
@@ -28,7 +28,20 @@ pip install randomize
 
 ## Usage
 
-_(coming soon)_
+_(More coming soon)_
+
+### Basic usage
+The following will execute the tests and print out the seed that was used to start the random number generator. This is useful for tracking down test failures: if there is a depedency that causes a failure, re-running the test suite with the same seed should allow the failure to be repeatable.
+
+```shell
+nosetests --randomize
+```
+
+To re-run the tests with a given seed number, use this command line:
+
+```shell
+nosetests --randomize --seed=<whatever number you wish to use>
+```
 
 ## Limitations
 
