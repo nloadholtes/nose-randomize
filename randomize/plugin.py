@@ -73,9 +73,9 @@ class Randomize(Plugin):
                 obj = transplant_class(obj, parent.__name__)
             if issubclass(obj, unittest.TestCase):
                 # Randomize the order of the tests in the TestCase
-                return self.Randomized_loadTestsFromTestCase(obj)
+                return self.randomized_loadTestsFromTestCase(obj)
             else:
-                return self.Randomized_loadTestsFromTestClass(obj)
+                return self.randomized_loadTestsFromTestClass(obj)
         elif ismethod(obj):
             if parent is None:
                 parent = obj.__class__
@@ -97,15 +97,15 @@ class Randomize(Plugin):
             return Failure(TypeError,
                            "Can't make a test from %s" % obj)
 
-    def Randomized_loadTestsFromTestClass(self, cls):
+    def randomized_loadTestsFromTestClass(self, cls):
         tests = loader.TestLoader().loadTestsFromTestClass(cls)
         return self._shuffler(tests)
 
-    def Randomized_loadTestsFromContextSuite(self, suite):
+    def randomized_loadTestsFromContextSuite(self, suite):
         tests = loader.TestLoader().loadTestsFromTestModule(suite)
         return self._shuffler(tests)
 
-    def Randomized_loadTestsFromTestCase(self, testCaseClass):
+    def randomized_loadTestsFromTestCase(self, testCaseClass):
         tests = loader.TestLoader().loadTestsFromTestCase(testCaseClass)
         return self._shuffler(tests)
 
