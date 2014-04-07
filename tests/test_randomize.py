@@ -72,13 +72,14 @@ class TestRandomizePluginLooseTestFunctions(PluginTester, unittest.TestCase):
 
 class TestRandomizePluginLooseTestFunctionsFastFail(PluginTester, unittest.TestCase):
     activate = '--randomize'
-    args = ['-v', '--seed=54642', '-x']
+    args = ['-v', '--seed=2', '-x']
     plugins = [Randomize()]
     suitepath = os.path.join(support, 'fixtures_loose_one_failure.py')
 
     def runTest(self):
         expect = [
-            'fixtures_loose.test_loose_A ... FAIL']
+            'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_B ... ok',
+            'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_A ... FAIL']
         print str(self.output)
         for line in self.output:
             if expect:
