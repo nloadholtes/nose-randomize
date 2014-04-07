@@ -84,6 +84,8 @@ class TestRandomizePluginLooseTestFunctionsFastFail(PluginTester, unittest.TestC
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
+            else:
+                raise Exception("Saw more responses than expected")
 
 
 class TestRandomizePluginNoTestFunctions(PluginTester, unittest.TestCase):
