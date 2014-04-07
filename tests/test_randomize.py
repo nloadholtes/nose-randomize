@@ -27,7 +27,7 @@ class TestRandomizePlugin(PluginTester, unittest.TestCase):
             'test_B (fixtures.Tests) ... ok',
             'test_A (fixtures.Tests) ... ok',
             'test_D (fixtures.Tests) ... ok']
-        print str(self.output)
+        print(str(self.output))
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
@@ -46,7 +46,7 @@ class TestRandomizePluginMultipleTestClasses(PluginTester, unittest.TestCase):
             'test_B (fixtures_two_classes.Tests_B_set) ... ok',
             'test_A (fixtures_two_classes.Tests_A_set) ... ok',
             'test_D (fixtures_two_classes.Tests_D_set) ... ok']
-        print str(self.output)
+        print(str(self.output))
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
@@ -64,7 +64,7 @@ class TestRandomizePluginLooseTestFunctions(PluginTester, unittest.TestCase):
             'fixtures_loose.test_loose_B ... ok',
             'fixtures_loose.test_loose_C ... ok',
             'fixtures_loose.test_loose_D ... ok']
-        print str(self.output)
+        print(str(self.output))
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
@@ -80,7 +80,7 @@ class TestRandomizePluginLooseTestFunctionsFastFail(PluginTester, unittest.TestC
         expect = [
             'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_B ... ok',
             'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_A ... FAIL']
-        print str(self.output)
+        print(str(self.output))
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
@@ -96,7 +96,7 @@ class TestRandomizePluginNoTestFunctions(PluginTester, unittest.TestCase):
 
     def runTest(self):
         expect = []
-        print str(self.output)
+        print(str(self.output))
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
@@ -113,7 +113,7 @@ class TestRandomizePluginNoTUnitTestBased(PluginTester, unittest.TestCase):
         "fixtures_not_unittest.Test_something_not_unittest.test_A_1 ... ok",
         "fixtures_not_unittest.Test_something_not_unittest.test_A_4 ... ok",
         "fixtures_not_unittest.Test_something_not_unittest.test_A_2 ... ok"]
-        print str(self.output)
+        print(str(self.output))
         for line in self.output:
             if expect:
                 self.assertEqual(line.strip(), expect.pop(0))
