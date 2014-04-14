@@ -15,6 +15,7 @@ from nose.plugins import Plugin
 from nose import loader
 from inspect import isfunction, ismethod
 from nose.case import FunctionTestCase, MethodTestCase
+from nose.core import TextTestRunner
 from nose.failure import Failure
 from nose.util import isclass, isgenerator, transplant_func, transplant_class
 import random
@@ -30,6 +31,7 @@ class Randomize(Plugin):
     name = 'randomize'
     # Generate a seed for deterministic behaviour
     seed = random.getrandbits(32)
+    stopOnError = False
 
     def options(self, parser, env):
         """Register commandline options.
@@ -40,19 +42,21 @@ class Randomize(Plugin):
         parser.add_option('--seed', action='store', dest='seed', default=None, type=long,
                           help="Initialize the seed for deterministic behavior in reproducing failed tests")
 
-    def configure(self, options, conf):
+    def configure(self, options, config):
         """
         Configure plugin.
         """
-        Plugin.configure(self, options, conf)
+        Plugin.configure(self, options, config)
+        self.config = config
         self.classes_to_look_at = []
-
         if options.randomize:
             self.enabled = True
             if options.seed is not None:
                 self.seed = options.seed
             random.seed(self.seed)
             print("Using %d as seed" % (self.seed,))
+        if options.stopOnError:
+            self.stopOnError = True
 
     def loadTestsFromNames(self, names, module=None):
         pass
@@ -65,7 +69,7 @@ class Randomize(Plugin):
         """Given a test object and its parent, return a test case
         or test suite.
         """
-        ldr = loader.TestLoader()
+        self.ldr = loader.TestLoader()
         if isinstance(obj, unittest.TestCase):
             return obj
         elif isclass(obj):
@@ -83,14 +87,14 @@ class Randomize(Plugin):
                 return parent(obj.__name__)
             else:
                 if isgenerator(obj):
-                    return ldr.loadTestsFromGeneratorMethod(obj, parent)
+                    return self.ldr.loadTestsFromGeneratorMethod(obj, parent)
                 else:
                     return MethodTestCase(obj)
         elif isfunction(obj):
             if parent and obj.__module__ != parent.__name__:
                 obj = transplant_func(obj, parent.__name__)
             if isgenerator(obj):
-                return ldr.loadTestsFromGenerator(obj, parent)
+                return self.ldr.loadTestsFromGenerator(obj, parent)
             else:
                 return [FunctionTestCase(obj)]
         else:
@@ -117,3 +121,19 @@ class Randomize(Plugin):
         random.shuffle(randomized_tests)
         tests._tests = (t for t in randomized_tests)
         return tests
+
+    def prepareTestRunner(self, runner):
+        print("Going to run my own tests.")
+        return RandomizeTestRunner(stream=runner.stream,
+            verbosity=self.config.verbosity,
+            config=self.config,
+            loaderClass=self.ldr)
+
+
+class RandomizeTestRunner(TextTestRunner):
+    def __init__(self, **kw):
+        self.loaderClass = kw.pop('loaderClass', loader.defaultTestLoader)
+        super(RandomizeTestRunner, self).__init__(**kw)
+
+    def run(self, test):
+        print("Config: %s" % str(self.config))
