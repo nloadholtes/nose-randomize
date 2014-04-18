@@ -20,6 +20,7 @@ from nose.failure import Failure
 from nose.util import isclass, isgenerator, transplant_func, transplant_class
 import random
 import unittest
+import os
 
 log = logging.getLogger(__name__)
 
@@ -57,6 +58,7 @@ class Randomize(Plugin):
             print("Using %d as seed" % (self.seed,))
         if options.stopOnError:
             self.stopOnError = True
+        self.enabled = True
 
     def loadTestsFromNames(self, names, module=None):
         pass
@@ -121,13 +123,32 @@ class Randomize(Plugin):
         random.shuffle(randomized_tests)
         tests._tests = (t for t in randomized_tests)
         return tests
+    
+    def addError(self, test, err):
+        """Enter pdb if configured to debug errors.
+        """
+        print("addError!!!")
+        if not self.enabled_for_errors:
+            return
+        self.debug(err)
 
-    def prepareTestRunner(self, runner):
-        print("Going to run my own tests.")
-        return RandomizeTestRunner(stream=runner.stream,
-            verbosity=self.config.verbosity,
-            config=self.config,
-            loaderClass=self.ldr)
+    def addFailure(self, test, err):
+        """Enter pdb if configured to debug failures.
+        """
+        print("addFailure!")
+        if not self.enabled_for_failures:
+            return
+        self.debug(err)
+
+    # def wasSuccessful(self, **kw):
+    #     pass
+
+    # def prepareTestRunner(self, runner):
+    #     print("Going to run my own tests.")
+    #     return RandomizeTestRunner(stream=runner.stream,
+    #         verbosity=self.config.verbosity,
+    #         config=self.config,
+    #         loaderClass=self.ldr)
 
 
 class RandomizeTestRunner(TextTestRunner):
@@ -137,3 +158,7 @@ class RandomizeTestRunner(TextTestRunner):
 
     def run(self, test):
         print("Config: %s" % str(self.config))
+
+    def wasSuccessful(self, **kw):
+        pass
+
