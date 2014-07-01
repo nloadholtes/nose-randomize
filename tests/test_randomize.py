@@ -33,6 +33,26 @@ class TestRandomizePlugin(PluginTester, unittest.TestCase):
                 self.assertEqual(line.strip(), expect.pop(0))
 
 
+class TestRandomizePluginStopOnFailure(PluginTester, unittest.TestCase):
+    activate = '--randomize'
+    args = ['-v', '--seed=2530711073', '-x']
+    plugins = [Randomize()]
+    suitepath = os.path.join(support, 'fixtures_loose_one_failure.py')
+
+    def runTest(self):
+        expect = [
+            'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_C ... ok',
+            'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_B ... ok',
+            'fixtures_loose_one_failure.TestBailEarlyOnError.test_loose_A ... ok', ]
+        print str(self.output)
+        counter = 0
+        for line in self.output:
+            if expect:
+                self.assertEqual(line.strip(), expect.pop(0))
+            counter += 1
+            self.assertTrue(counter < 3, 'Extra tests were run when -x was present')
+
+
 @unittest.skip("Skipping test until the classes can be shuffled")
 class TestRandomizePluginMultipleTestClasses(PluginTester, unittest.TestCase):
     activate = '--randomize'
