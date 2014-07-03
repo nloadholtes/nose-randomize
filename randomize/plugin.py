@@ -65,6 +65,7 @@ class Randomize(Plugin):
         """Given a test object and its parent, return a test case
         or test suite.
         """
+        log.debug("Determining the tests")
         ldr = loader.TestLoader()
         if isinstance(obj, unittest.TestCase):
             return obj
@@ -111,6 +112,7 @@ class Randomize(Plugin):
 
     def _shuffler(self, tests):
         """Shuffles the given tests"""
+        log.debug("shuffling tests")
         randomized_tests = []
         for t in tests._tests:
             randomized_tests.append(t)
