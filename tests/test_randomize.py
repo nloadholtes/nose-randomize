@@ -9,6 +9,7 @@ and the original author is: Charles McCreary
 """
 import os
 import unittest
+import sys
 from nose.plugins import PluginTester
 from randomize import Randomize
 
@@ -17,7 +18,10 @@ support = os.path.join(os.path.dirname(__file__), 'support')
 
 class TestRandomizePlugin(PluginTester, unittest.TestCase):
     activate = '--randomize'
-    args = ['-v', '--seed=2530711073']
+    if (sys.version_info > (3, 0)):
+        args = ['-v', '--seed=2531']
+    else:
+        args = ['-v', '--seed=2530711073']
     plugins = [Randomize()]
     suitepath = os.path.join(support, 'fixtures.py')
 
@@ -86,7 +90,10 @@ class TestRandomizePluginNoTestFunctions(PluginTester, unittest.TestCase):
 
 class TestRandomizePluginNoTUnitTestBased(PluginTester, unittest.TestCase):
     activate = '--randomize'
-    args = ['-v', '--seed=12333112']
+    if (sys.version_info > (3, 0)):
+        args = ['-v', '--seed=12499']
+    else:
+        args = ['-v', '--seed=521115']
     plugins = [Randomize()]
     suitepath = os.path.join(support, 'fixtures_not_unittest.py')
 
