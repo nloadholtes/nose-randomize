@@ -35,10 +35,12 @@ setup(
         },
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Classifier: Intended Audience :: Developers',
-        'Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
-        'Classifier: Operating System :: OS Independent',
-        'Classifier: Topic :: Software Development :: Testing',
-        'Classifier: Topic :: Utilities']
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Topic :: Software Development :: Testing',
+        'Topic :: Utilities']
 
     )
