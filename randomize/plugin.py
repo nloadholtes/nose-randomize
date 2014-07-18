@@ -37,7 +37,7 @@ class Randomize(Plugin):
         Plugin.options(self, parser, env)
         parser.add_option('--randomize', action='store_true', dest='randomize',
                           help="Randomize the order of the tests within a unittest.TestCase class")
-        parser.add_option('--seed', action='store', dest='seed', default=None, type=long,
+        parser.add_option('--seed', action='store', dest='seed', default=None, type=int,
                           help="Initialize the seed for deterministic behavior in reproducing failed tests")
 
     def configure(self, options, conf):
