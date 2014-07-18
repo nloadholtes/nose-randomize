@@ -1,1 +1,1 @@
-from plugin import Randomize
+from .plugin import Randomize
