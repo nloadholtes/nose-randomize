@@ -1,8 +1,6 @@
 """
 This plugin randomizes the order of tests within a unittest.TestCase class
 
-This code is a fork of the nloadholtes/nose-randomize project (https://github.com/nloadholtes/nose-randomize)
-
 The original source of the code is:
 
 http://code.google.com/p/python-nose/issues/detail?id=255
