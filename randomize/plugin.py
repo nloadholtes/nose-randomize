@@ -19,7 +19,6 @@ from nose.failure import Failure
 from nose.util import isclass, isgenerator, transplant_func, transplant_class
 import random
 import unittest
-from random import getrandbits
 from nose.tools import nottest
 
 log = logging.getLogger(__name__)
@@ -45,7 +44,7 @@ def randomize_tests(seed=None):
     def rebuild(cls):
         setattr(cls, CLASS_SPECIFIC_RANDOMIZE_TESTS_FIELD_NAME, seed)
         if seed is None:
-            setattr(cls, CLASS_SPECIFIC_RANDOMIZE_TESTS_FIELD_NAME, getrandbits(32))
+            setattr(cls, CLASS_SPECIFIC_RANDOMIZE_TESTS_FIELD_NAME, random.getrandbits(32))
 
         return cls
 
