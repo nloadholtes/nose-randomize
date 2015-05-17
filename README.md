@@ -41,6 +41,14 @@ To re-run the tests with a given seed number, use this command line:
 nosetests --randomize --seed=<whatever number you wish to use>
 ```
 
+To only randomize the methods within a speicific class:
+
+```shell
+nosetests --randomize --class-specific
+```
+
+_Note: To use the **--class-specific** feature you need to add a decorator to the class that will be randomized._
+
 ## Limitations
 
 Currently this plugin is only able to randomize the tests within a Class or Module. It does not support running the Classes in a random order. 
