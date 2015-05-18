@@ -29,7 +29,7 @@ setup(
     license='GNU LGPL',
     py_modules=['randomize/plugin', 'randomize/__init__'],
     entry_points={
-        'nose.plugins.0.11': [
+        'nose.plugins.0.10': [
             'randomize = randomize:Randomize'
             ],
         },
