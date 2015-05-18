@@ -18,7 +18,7 @@ from setuptools import setup
 
 setup(
     name='randomize',
-    version='0.10',
+    version='0.11',
     maintainer='Nick Loadholtes',
     maintainer_email='nick@ironboundsoftware.com',
     url='https://github.com/nloadholtes/nose-randomize',
@@ -29,7 +29,7 @@ setup(
     license='GNU LGPL',
     py_modules=['randomize/plugin', 'randomize/__init__'],
     entry_points={
-        'nose.plugins.0.10': [
+        'nose.plugins.0.11': [
             'randomize = randomize:Randomize'
             ],
         },
