@@ -135,7 +135,7 @@ class Randomize(Plugin):
             if parent is None:
                 parent = obj.__class__
             if issubclass(parent, unittest.TestCase):
-                return parent(obj.__name__)
+                return [parent(obj.__name__)]
             else:
                 if isgenerator(obj):
                     return ldr.loadTestsFromGeneratorMethod(obj, parent)
