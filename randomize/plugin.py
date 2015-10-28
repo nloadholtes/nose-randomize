@@ -21,7 +21,7 @@ import random
 import unittest
 from nose.tools import nottest
 
-log = logging.getLogger(__name__)
+log = logging.getLogger("nose.plugins.Randomize")
 CLASS_SPECIFIC_RANDOMIZE_TESTS_FIELD_NAME = 'randomize_tests_seed'
 
 
@@ -90,11 +90,11 @@ class Randomize(Plugin):
                 self.class_specific = True
 
             if options.seed is not None and not options.class_specific:
-                print("Using %d as seed" % (self.seed,))
+                log.info("Using %d as seed" % (self.seed,))
 
             if options.seed is not None and options.class_specific:
                 self.class_specific = False
-                print(
+                log.info(
                     'NOTE: options --seed and --class-specific conflict, '
                     'Specific class randomization ignored, seed %d will be used.' % (self.seed,))
 
@@ -125,7 +125,7 @@ class Randomize(Plugin):
                 class_specific_seed = getattr(obj, CLASS_SPECIFIC_RANDOMIZE_TESTS_FIELD_NAME, None)
                 if issubclass(obj, unittest.TestCase) and class_specific_seed is not None:
                     random.seed(class_specific_seed)
-                    print("Using %d as seed to randomize tests in %s" % (class_specific_seed, '.'.join(
+                    log.info("Using %d as seed to randomize tests in %s" % (class_specific_seed, '.'.join(
                         [obj.__module__, obj.__name__])))
                     return self.randomized_loadTestsFromTestCase(obj)
                 else:
