@@ -89,8 +89,7 @@ class Randomize(Plugin):
             if options.class_specific:
                 self.class_specific = True
 
-            if options.seed is not None and not options.class_specific:
-                print("Using %d as seed" % (self.seed,))
+            print("Using %d as seed" % (self.seed,))
 
             if options.seed is not None and options.class_specific:
                 self.class_specific = False
