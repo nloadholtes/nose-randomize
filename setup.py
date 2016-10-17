@@ -18,7 +18,7 @@ from setuptools import setup
 
 setup(
     name='randomize',
-    version='0.13',
+    version='0.14',
     maintainer='Nick Loadholtes',
     maintainer_email='nick@ironboundsoftware.com',
     url='https://github.com/nloadholtes/nose-randomize',
