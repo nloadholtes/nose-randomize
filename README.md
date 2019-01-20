@@ -3,6 +3,9 @@ nose-randomize
 
 A plugin to allow nose to run tests in a random order
 
+# Note: Project archived!
+Hello, I have decided to archive this project. Please do not expect any further updates to it.
+
 ## About
 When nose runs the tests in a given project, the order that the tests are loaded and excuted is always the same.
 
